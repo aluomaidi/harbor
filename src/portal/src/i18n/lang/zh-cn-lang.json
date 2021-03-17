@@ -585,6 +585,7 @@
         "AUTH_MODE_DB": "数据库",
         "AUTH_MODE_LDAP": "LDAP",
         "AUTH_MODE_UAA": "UAA",
+        "AUTH_MODE_ANGEL": "天使",
         "SCOPE_BASE": "本层",
         "SCOPE_ONE_LEVEL": "下一层",
         "SCOPE_SUBTREE": "子树",
@@ -635,6 +636,10 @@
             "CLIENT_ID": "UAA Client ID",
             "CLIENT_SECRET": "UAA Client Secret",
             "VERIFY_CERT": "UAA 检查证书"
+        },
+        "ANGEL": {
+            "ENDPOINT": "Angel Endpoint",
+            "REDIRECT": "Angel redirect"
         },
         "SCANNING": {
             "TRIGGER_SCAN_ALL_SUCCESS": "启动扫描所有镜像任务成功!",

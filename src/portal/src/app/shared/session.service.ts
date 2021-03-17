@@ -76,6 +76,18 @@ export class SessionService {
             .catch(error => this.handleError(error));
     }
 
+    // 验证天使系统的token
+    signInByToken(token: string): Promise<any> {
+        // Build the form package
+        let queryParam: string = 'token=' + encodeURIComponent(token);
+
+        // Trigger Http
+        return this.http.post(signInUrl, queryParam, HTTP_FORM_OPTIONS)
+            .toPromise()
+            .then(() => null)
+            .catch(error => this.handleError(error));
+    }
+
     /**
      * Get the related information of current signed in user from backend
      *

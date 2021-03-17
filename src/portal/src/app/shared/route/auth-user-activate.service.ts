@@ -29,11 +29,11 @@ import { SearchTriggerService } from '../../base/global-search/search-trigger.se
 @Injectable()
 export class AuthCheckGuard implements CanActivate, CanActivateChild {
   constructor(
-    private authService: SessionService,
-    private router: Router,
-    private appConfigService: AppConfigService,
-    private msgHandler: MessageHandlerService,
-    private searchTrigger: SearchTriggerService) { }
+      private authService: SessionService,
+      private router: Router,
+      private appConfigService: AppConfigService,
+      private msgHandler: MessageHandlerService,
+      private searchTrigger: SearchTriggerService) { }
 
   isGuest(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const proRegExp = /\/harbor\/projects\/[\d]+\/.+/i;
@@ -73,25 +73,25 @@ export class AuthCheckGuard implements CanActivate, CanActivateChild {
       let user = this.authService.getCurrentUser();
       if (!user) {
         this.authService.retrieveUser()
-          .then(() => resolve(true))
-          .catch(error => {
-            // If is guest, skip it
-            if (this.isGuest(route, state)) {
-              return resolve(true);
-            }
-            // Session retrieving failed then redirect to sign-in
-            // no matter what status code is.
-            // Please pay attention that route 'HARBOR_ROOT' and 'EMBEDDED_SIGN_IN' support anonymous user
-            if (state.url !== CommonRoutes.HARBOR_ROOT && !state.url.startsWith(CommonRoutes.EMBEDDED_SIGN_IN)) {
-              let navigatorExtra: NavigationExtras = {
-                queryParams: { "redirect_url": state.url }
-              };
-              this.router.navigate([CommonRoutes.EMBEDDED_SIGN_IN], navigatorExtra);
-              return resolve(false);
-            } else {
-              return resolve(true);
-            }
-          });
+            .then(() => resolve(true))
+            .catch(error => {
+              // If is guest, skip it
+              if (this.isGuest(route, state)) {
+                return resolve(true);
+              }
+              // Session retrieving failed then redirect to sign-in
+              // no matter what status code is.
+              // Please pay attention that route 'HARBOR_ROOT' and 'EMBEDDED_SIGN_IN' support anonymous user
+              if (state.url !== CommonRoutes.HARBOR_ROOT && !state.url.startsWith(CommonRoutes.EMBEDDED_SIGN_IN)) {
+                let navigatorExtra: NavigationExtras = {
+                  queryParams: { "redirect_url": state.url }
+                };
+                this.router.navigate([CommonRoutes.EMBEDDED_SIGN_IN], navigatorExtra);
+                return resolve(false);
+              } else {
+                return resolve(true);
+              }
+            });
       } else {
         return resolve(true);
       }

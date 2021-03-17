@@ -557,6 +557,8 @@
         "SELF_REGISTRATION": "Autoriser l'Auto-Inscription",
         "AUTH_MODE_DB": "Base de données",
         "AUTH_MODE_LDAP": "LDAP",
+        "AUTH_MODE_UAA": "UAA",
+        "AUTH_MODE_ANGEL": "Angel",
         "SCOPE_BASE": "Base",
         "SCOPE_ONE_LEVEL": "Premier Niveau",
         "SCOPE_SUBTREE": "Sous-arbre",
@@ -601,6 +603,9 @@
             "LDAP_GROUP_ADMIN_DN_INFO": "Specify an LDAP group DN. all LDAP user in this group will have harbor admin privilege. Keep it blank if you do not want to.",
             "GROUP_SCOPE": "LDAP Group Scope",
             "GROUP_SCOPE_INFO": "The scope to search for groups, select Subtree by default."
+        },
+        "Angel": {
+            "ENDPOINT": "Angle Endpoint"
         },
         "SCANNING": {
             "TRIGGER_SCAN_ALL_SUCCESS": "Déclenchement d'analyse globale avec succès !",

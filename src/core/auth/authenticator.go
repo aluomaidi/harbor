@@ -17,6 +17,7 @@ package auth
 import (
 	"errors"
 	"fmt"
+	"github.com/goharbor/harbor/src/common/utils"
 	"time"
 
 	"github.com/goharbor/harbor/src/common"
@@ -123,21 +124,20 @@ func Register(name string, h AuthenticateHelper) {
 		return
 	}
 	registry[name] = h
-	log.Debugf("Registered authencation helper for auth mode: %s", name)
+	log.Infof("Registered authencation helper for auth mode: %s", name)
 }
 
 // Login authenticates user credentials based on setting.
 func Login(m models.AuthModel) (*models.User, error) {
-
-	authMode, err := config.AuthMode()
+	cfg, err := config.GetSystemCfg()
 	if err != nil {
 		return nil, err
 	}
-	if authMode == "" || dao.IsSuperUser(m.Principal) {
+	authMode := utils.SafeCastString(cfg[common.AUTHMode])
+	if authMode == "" || (m.Principal != "" && dao.IsSuperUser(m.Principal)) {
 		authMode = common.DBAuth
 	}
-	log.Debug("Current AUTH_MODE is ", authMode)
-
+	log.Debugf("Current AUTH_MODE is ", authMode)
 	authenticator, ok := registry[authMode]
 	if !ok {
 		return nil, fmt.Errorf("Unrecognized auth_mode: %s", authMode)
@@ -147,6 +147,9 @@ func Login(m models.AuthModel) (*models.User, error) {
 		return nil, nil
 	}
 	user, err := authenticator.Authenticate(m)
+	if user != nil {
+		log.Debugf("user:%s auth success", user.Username)
+	}
 	if err != nil {
 		if _, ok = err.(ErrAuth); ok {
 			log.Debugf("Login failed, locking %s, and sleep for %v", m.Principal, frozenTime)

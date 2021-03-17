@@ -19,6 +19,7 @@ const (
 	DBAuth              = "db_auth"
 	LDAPAuth            = "ldap_auth"
 	UAAAuth             = "uaa_auth"
+	AngelAuth           = "angel_auth"
 	ProCrtRestrEveryone = "everyone"
 	ProCrtRestrAdmOnly  = "adminonly"
 	LDAPScopeBase       = 0
@@ -94,6 +95,8 @@ const (
 	UAAClientID                       = "uaa_client_id"
 	UAAClientSecret                   = "uaa_client_secret"
 	UAAVerifyCert                     = "uaa_verify_cert"
+	AngelEndpoint                     = "angel_endpoint"
+	AngelRedirect                     = "angel_redirect"
 	DefaultClairEndpoint              = "http://clair:6060"
 	CfgDriverDB                       = "db"
 	CfgDriverJSON                     = "json"
@@ -153,12 +156,14 @@ var (
 		UAAClientSecret,
 		UAAEndpoint,
 		UAAVerifyCert,
+		AngelEndpoint,
+		AngelRedirect,
 		ReadOnly,
 	}
 
 	// value is default value
 	HarborStringKeysMap = map[string]string{
-		AUTHMode:                   "db_auth",
+		AUTHMode:                   "angel_auth",
 		LDAPURL:                    "",
 		LDAPSearchDN:               "",
 		LDAPSearchPwd:              "",
@@ -177,6 +182,8 @@ var (
 		ProjectCreationRestriction: ProCrtRestrEveryone,
 		UAAClientID:                "",
 		UAAEndpoint:                "",
+		AngelEndpoint:              "",
+		AngelRedirect:              "",
 	}
 
 	HarborNumKeysMap = map[string]int{

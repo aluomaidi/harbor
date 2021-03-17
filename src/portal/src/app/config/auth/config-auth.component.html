@@ -7,6 +7,7 @@
                     <option value="db_auth">{{'CONFIG.AUTH_MODE_DB' | translate }}</option>
                     <option value="ldap_auth">{{'CONFIG.AUTH_MODE_LDAP' | translate }}</option>
                     <option value="uaa_auth">{{'CONFIG.AUTH_MODE_UAA' | translate }}</option>
+                    <option value="angel_auth">{{'CONFIG.AUTH_MODE_ANGEL' | translate }}</option>
                 </select>
             </div>
             <a href="javascript:void(0)" role="tooltip" aria-haspopup="true" class="tooltip tooltip-lg tooltip-top-right" style="top: -1px;">
@@ -32,6 +33,16 @@
         <div class="form-group">
             <label for="uaa-cert" class="required">{{'CONFIG.UAA.VERIFY_CERT' | translate}}</label>
             <clr-checkbox id="uaa-cert" name="uaa-cert" [(clrChecked)]="currentConfig.uaa_verify_cert.value" [clrDisabled]="!currentConfig.uaa_verify_cert.editable"></clr-checkbox>
+        </div>
+    </section>
+    <section class="form-block" *ngIf="showAngel">
+        <div class="form-group">
+            <label for="angel-endpoint" class="required">{{'CONFIG.ANGEL.ENDPOINT' | translate}}</label>
+            <input type="text" id="angel-endpoint" name="angel-endpoint" size="35" [(ngModel)]="currentConfig.angel_endpoint.value">
+        </div>
+        <div class="form-group">
+            <label for="angel-redirect" class="required">{{'CONFIG.ANGEL.REDIRECT' | translate}}</label>
+            <input type="text" id="angel-redirect" name="angel-redirect" size="35" [(ngModel)]="currentConfig.angel_redirect.value">
         </div>
     </section>
 

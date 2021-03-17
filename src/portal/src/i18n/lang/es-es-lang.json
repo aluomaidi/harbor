@@ -585,6 +585,7 @@
         "AUTH_MODE_DB": "Base de datos",
         "AUTH_MODE_LDAP": "LDAP",
         "AUTH_MODE_UAA": "UAA",
+        "AUTH_MODE_ANGEL": "Angel",
         "SCOPE_BASE": "Base",
         "SCOPE_ONE_LEVEL": "UnNivel",
         "SCOPE_SUBTREE": "Subárbol",
@@ -636,6 +637,10 @@
             "CLIENT_ID": "UAA Client ID",
             "CLIENT_SECRET": "UAA Client Secret",
             "VERIFY_CERT": "UAA Verify Cert"
+        },
+        "ANGEL": {
+            "ENDPOINT": "Angel Endpoint",
+            "REDIRECT": "Angel redirect"
         },
         "SCANNING": {
             "TRIGGER_SCAN_ALL_SUCCESS": "Trigger scan all successfully!",

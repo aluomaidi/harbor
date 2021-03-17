@@ -30,6 +30,8 @@ export class AppConfig {
     read_only: boolean;
     with_chartmuseum: boolean;
     show_popular_repo: boolean;
+    angel_endpoint: string;
+    angel_redirect: string;
 
     constructor() {
         // Set default value
@@ -37,7 +39,7 @@ export class AppConfig {
         this.with_admiral = false;
         this.with_clair = false;
         this.admiral_endpoint = "";
-        this.auth_mode = "db_auth";
+        this.auth_mode = "angel_auth";
         this.registry_url = "";
         this.project_creation_restriction = "everyone";
         this.self_registration = true;
@@ -52,5 +54,7 @@ export class AppConfig {
         this.read_only = false;
         this.with_chartmuseum = false;
         this.show_popular_repo = false;
+        this.angel_endpoint = "https://auth.iflytek.com";
+        this.angel_redirect = "http://47.57.243.193";
     }
 }

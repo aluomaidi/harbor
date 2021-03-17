@@ -68,6 +68,10 @@ export class AppConfigService {
         return this.configurations && this.configurations.auth_mode === 'ldap_auth';
     }
 
+    public isAngelMode(): boolean {
+        return this.configurations && this.configurations.auth_mode === 'angel_auth';
+    }
+
     // Return the reconstructed admiral url
     public getAdmiralEndpoint(currentHref: string): string {
         let admiralUrl: string = this.configurations.admiral_endpoint;

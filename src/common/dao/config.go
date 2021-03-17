@@ -25,12 +25,13 @@ import (
 // modified or not. Auth mode can modified when there is only admin
 // user in database.
 func AuthModeCanBeModified() (bool, error) {
-	c, err := GetOrmer().QueryTable(&models.User{}).Count()
-	if err != nil {
-		return false, err
-	}
+	//c, err := GetOrmer().QueryTable(&models.User{}).Count()
+	//if err != nil {
+	//	return false, err
+	//}
 	// admin and anonymous
-	return c == 2, nil
+	//return c == 2, nil
+	return true, nil
 }
 
 // GetConfigEntries Get configuration from database

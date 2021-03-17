@@ -134,7 +134,6 @@ func (s *secretReqCtxModifier) Modify(ctx *beegoctx.Context) bool {
 	if len(scrt) == 0 {
 		return false
 	}
-	log.Debug("got secret from request")
 
 	log.Debug("using global project manager")
 	pm := config.GlobalProjectMgr
@@ -154,7 +153,7 @@ func (b *basicAuthReqCtxModifier) Modify(ctx *beegoctx.Context) bool {
 	if !ok {
 		return false
 	}
-	log.Debug("got user information via basic auth")
+	log.Debugf("got user information via basic auth")
 
 	// integration with admiral
 	if config.WithAdmiral() {
@@ -240,7 +239,6 @@ func (s *sessionReqCtxModifier) Modify(ctx *beegoctx.Context) bool {
 		log.Info("can not get user information from session")
 		return false
 	}
-	log.Debug("Getting user %+v", user)
 	log.Debug("using local database project manager")
 	pm := config.GlobalProjectMgr
 	log.Debug("creating local database security context...")
@@ -260,7 +258,6 @@ func (t *tokenReqCtxModifier) Modify(ctx *beegoctx.Context) bool {
 	}
 
 	log.Debug("got token from request")
-
 	authContext, err := authcontext.GetAuthCtx(config.AdmiralClient,
 		config.AdmiralEndpoint(), token)
 	if err != nil {
@@ -287,8 +284,6 @@ func (t *tokenReqCtxModifier) Modify(ctx *beegoctx.Context) bool {
 type unauthorizedReqCtxModifier struct{}
 
 func (u *unauthorizedReqCtxModifier) Modify(ctx *beegoctx.Context) bool {
-	log.Debug("user information is nil")
-
 	var securCtx security.Context
 	var pm promgr.ProjectManager
 	if config.WithAdmiral() {

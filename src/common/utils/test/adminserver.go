@@ -24,7 +24,7 @@ import (
 
 var adminServerDefaultConfig = map[string]interface{}{
 	common.ExtEndpoint:                "https://host01.com",
-	common.AUTHMode:                   common.DBAuth,
+	common.AUTHMode:                   common.AngelAuth,
 	common.DatabaseType:               "postgresql",
 	common.PostGreSQLHOST:             "127.0.0.1",
 	common.PostGreSQLPort:             5432,
@@ -70,6 +70,8 @@ var adminServerDefaultConfig = map[string]interface{}{
 	common.UAAClientID:                "testid",
 	common.UAAClientSecret:            "testsecret",
 	common.UAAEndpoint:                "10.192.168.5",
+	common.AngelEndpoint:              "10.192.168.5",
+	common.AngelRedirect:              "10.192.168.5",
 	common.UAAVerifyCert:              false,
 	common.CoreURL:                    "http://myui:8888/",
 	common.JobServiceURL:              "http://myjob:8888/",

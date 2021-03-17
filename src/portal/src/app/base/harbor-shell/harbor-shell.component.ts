@@ -102,6 +102,11 @@ export class HarborShellComponent implements OnInit, OnDestroy {
         return appConfig.auth_mode === 'ldap_auth';
     }
 
+    public get isAngelMode(): boolean {
+        let appConfig = this.appConfigService.getConfig();
+        return appConfig.auth_mode === 'angel_auth';
+    }
+
     public get isUserExisting(): boolean {
         let account = this.session.getCurrentUser();
         return account != null;

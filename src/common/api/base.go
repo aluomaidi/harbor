@@ -158,6 +158,7 @@ func (b *BaseAPI) DecodeJSONReqAndValidate(v interface{}) {
 func (b *BaseAPI) Redirect(statusCode int, resouceID string) {
 	requestURI := b.Ctx.Request.RequestURI
 	resourceURI := requestURI + "/" + resouceID
+	log.Infof("requestURI:%s, resouceID:%s", requestURI, resouceID)
 
 	b.Ctx.Redirect(statusCode, resourceURI)
 }

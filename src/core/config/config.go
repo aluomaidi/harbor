@@ -571,3 +571,21 @@ func GetChartMuseumEndpoint() (string, error) {
 
 	return chartEndpoint, nil
 }
+
+// AngelEndpoint ...
+func GetAngelEndpoint() (string, error) {
+	cfg, err := mg.Get()
+	if err != nil {
+		return "", err
+	}
+	return utils.SafeCastString(cfg[common.AngelEndpoint]), nil
+}
+
+// AngelRedirect ...
+func GetAngelRedirect() (string, error) {
+	cfg, err := mg.Get()
+	if err != nil {
+		return "", err
+	}
+	return utils.SafeCastString(cfg[common.AngelRedirect]), nil
+}

@@ -130,7 +130,7 @@ func (pma *ProjectMemberAPI) Post() {
 	var request models.MemberReq
 	pma.DecodeJSONReq(&request)
 	request.MemberGroup.LdapGroupDN = strings.TrimSpace(request.MemberGroup.LdapGroupDN)
-
+	log.Infof("add project member request: %+v", request)
 	pmid, err := AddProjectMember(projectID, request)
 	if err == auth.ErrorGroupNotExist || err == auth.ErrorUserNotExist {
 		pma.HandleNotFound(fmt.Sprintf("Failed to add project member, error: %v", err))

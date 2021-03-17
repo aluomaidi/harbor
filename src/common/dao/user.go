@@ -227,8 +227,10 @@ func OnBoardUser(u *models.User) error {
 	o := GetOrmer()
 	created, id, err := o.ReadOrCreate(u, "Username")
 	if err != nil {
+		log.Info("user create failed!")
 		return err
 	}
+	log.Infof("user id is %d", id)
 	if created {
 		u.UserID = int(id)
 	} else {

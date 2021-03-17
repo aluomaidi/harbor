@@ -102,6 +102,8 @@ type GeneralInfo struct {
 	RegistryStorageProviderName string                           `json:"registry_storage_provider_name"`
 	ReadOnly                    bool                             `json:"read_only"`
 	WithChartMuseum             bool                             `json:"with_chartmuseum"`
+	AngelEndpoint               string                           `json:"angel_endpoint"`
+	AngelRedirect               string                           `json:"angel_redirect"`
 }
 
 // validate for validating user if an admin.
@@ -182,6 +184,8 @@ func (sia *SystemInfoAPI) GetGeneralInfo() {
 		RegistryStorageProviderName: utils.SafeCastString(cfg[common.RegistryStorageProviderName]),
 		ReadOnly:                    config.ReadOnly(),
 		WithChartMuseum:             config.WithChartMuseum(),
+		AngelEndpoint:               utils.SafeCastString(cfg[common.AngelEndpoint]),
+		AngelRedirect:               utils.SafeCastString(cfg[common.AngelRedirect]),
 	}
 	if info.WithClair {
 		info.ClairVulnStatus = getClairVulnStatus()

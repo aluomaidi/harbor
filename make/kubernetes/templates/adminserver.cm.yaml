@@ -4,7 +4,7 @@ metadata:
   name: harbor-adminserver-config
 data:
   LOG_LEVEL: debug
-  AUTH_MODE: db_auth
+  AUTH_MODE: angel_auth
   SELF_REGISTRATION: "on"
   LDAP_URL: ldaps://ldap.mydomain.com
   LDAP_SEARCH_DN: ""

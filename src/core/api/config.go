@@ -52,6 +52,7 @@ type value struct {
 // Get returns configurations
 func (c *ConfigAPI) Get() {
 	configs, err := config.GetSystemCfg()
+	log.Infof("/api/configurations result==== +%v", configs)
 	if err != nil {
 		log.Errorf("failed to get configurations: %v", err)
 		c.CustomAbort(http.StatusInternalServerError, http.StatusText(http.StatusInternalServerError))
@@ -170,8 +171,8 @@ func validateCfg(c map[string]interface{}) (bool, error) {
 	}
 
 	if value, ok := strMap[common.AUTHMode]; ok {
-		if value != common.DBAuth && value != common.LDAPAuth && value != common.UAAAuth {
-			return false, fmt.Errorf("invalid %s, shoud be one of %s, %s, %s", common.AUTHMode, common.DBAuth, common.LDAPAuth, common.UAAAuth)
+		if value != common.DBAuth && value != common.LDAPAuth && value != common.UAAAuth && value != common.AngelAuth {
+			return false, fmt.Errorf("invalid %s, shoud be one of %s, %s, %s", common.AUTHMode, common.DBAuth, common.LDAPAuth, common.UAAAuth, common.AngelAuth)
 		}
 		flag, err := authModeCanBeModified()
 		if err != nil {

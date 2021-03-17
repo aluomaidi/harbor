@@ -66,11 +66,16 @@ export class ConfigurationAuthComponent implements OnChanges {
         return this.currentConfig && this.currentConfig.auth_mode && this.currentConfig.auth_mode.value === 'uaa_auth';
     }
 
+    public get showAngel(): boolean {
+        return this.currentConfig && this.currentConfig.auth_mode && this.currentConfig.auth_mode.value === 'angel_auth';
+    }
+
     public get showSelfReg(): boolean {
         if (!this.currentConfig || !this.currentConfig.auth_mode) {
             return true;
         } else {
-            return this.currentConfig.auth_mode.value !== 'ldap_auth' && this.currentConfig.auth_mode.value !== 'uaa_auth';
+            // tslint:disable-next-line:max-line-length
+            return this.currentConfig.auth_mode.value !== 'ldap_auth' && this.currentConfig.auth_mode.value !== 'uaa_auth' && this.currentConfig.auth_mode.value !== 'angel_auth';
         }
     }
 
@@ -130,6 +135,11 @@ export class ConfigurationAuthComponent implements OnChanges {
             this.currentConfig.auth_mode.value === 'ldap_auth';
     }
 
+    public get showAngelServerBtn(): boolean {
+        return this.currentConfig.auth_mode &&
+            this.currentConfig.auth_mode.value === 'angel_auth';
+    }
+
     public isLDAPConfigValid(): boolean {
         return this.isValid() &&
             !this.testingLDAPOnGoing;
@@ -141,6 +151,7 @@ export class ConfigurationAuthComponent implements OnChanges {
         for (let prop in allChanges) {
             if (prop.startsWith('ldap_')
             || prop.startsWith('uaa_')
+            || prop.startsWith('angel_')
             || prop === 'auth_mode'
             || prop === 'project_creattion_restriction'
             || prop === 'self_registration') {
@@ -161,7 +172,7 @@ export class ConfigurationAuthComponent implements OnChanges {
     handleOnChange($event: any): void {
         if ($event && $event.target && $event.target["value"]) {
             let authMode = $event.target["value"];
-            if (authMode === 'ldap_auth' || authMode === 'uaa_auth') {
+            if (authMode === 'ldap_auth' || authMode === 'uaa_auth' || authMode === 'angel_auth') {
                 if (this.currentConfig.self_registration.value) {
                     this.currentConfig.self_registration.value = false; // unselect
                 }

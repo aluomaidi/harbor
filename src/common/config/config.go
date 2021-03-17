@@ -39,7 +39,7 @@ func NewManager(client client.Client, enableCache bool) *Manager {
 	}
 
 	if enableCache {
-		m.Cache = true
+		m.Cache = false
 		m.cache = cache.NewMemoryCache()
 		m.key = "cfg"
 	}

@@ -56,10 +56,12 @@ type messageDetail struct {
 func (cc *CommonController) Login() {
 	principal := cc.GetString("principal")
 	password := cc.GetString("password")
+	token := cc.GetString("token")
 
 	user, err := auth.Login(models.AuthModel{
 		Principal: principal,
 		Password:  password,
+		Token:     token,
 	})
 	if err != nil {
 		log.Errorf("Error occurred in UserLogin: %v", err)
@@ -70,6 +72,7 @@ func (cc *CommonController) Login() {
 		cc.CustomAbort(http.StatusUnauthorized, "")
 	}
 	cc.SetSession("user", *user)
+	log.Infof("set session: %s success", user.Username)
 }
 
 // LogOut Habor UI

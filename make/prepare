@@ -211,6 +211,8 @@ clair_db_username = rcp.get("configuration", "clair_db_username")
 clair_db = rcp.get("configuration", "clair_db")
 clair_updaters_interval = rcp.get("configuration", "clair_updaters_interval")
 
+angel_endpoint = rcp.get("configuration", "angel_endpoint")
+angel_redirect = rcp.get("configuration", "angel_redirect")
 uaa_endpoint = rcp.get("configuration", "uaa_endpoint")
 uaa_clientid = rcp.get("configuration", "uaa_clientid")
 uaa_clientsecret = rcp.get("configuration", "uaa_clientsecret")
@@ -385,6 +387,8 @@ render(os.path.join(templates_dir, "adminserver", "env"),
         clair_db_port=clair_db_port,
         clair_db_username=clair_db_username,
         clair_db=clair_db,
+        angel_endpoint=angel_endpoint,
+        angel_redirect=angel_redirect,
         uaa_endpoint=uaa_endpoint,
         uaa_clientid=uaa_clientid,
         uaa_clientsecret=uaa_clientsecret,
