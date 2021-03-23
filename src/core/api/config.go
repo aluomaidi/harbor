@@ -52,7 +52,6 @@ type value struct {
 // Get returns configurations
 func (c *ConfigAPI) Get() {
 	configs, err := config.GetSystemCfg()
-	log.Infof("/api/configurations result==== +%v", configs)
 	if err != nil {
 		log.Errorf("failed to get configurations: %v", err)
 		c.CustomAbort(http.StatusInternalServerError, http.StatusText(http.StatusInternalServerError))

@@ -55,6 +55,6 @@ export class AppConfig {
         this.with_chartmuseum = false;
         this.show_popular_repo = false;
         this.angel_endpoint = "https://auth.iflytek.com";
-        this.angel_redirect = "http://47.57.243.193";
+        this.angel_redirect = "https://hub.iflytek.com";
     }
 }
