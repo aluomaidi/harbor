@@ -39,8 +39,8 @@ export class SignInGuard implements CanActivate, CanActivateChild {
                 console.error("Failed to load bootstrap options with error: ", error);
             });
         // 天使系统配置信息
-        let angel_endpoint = appconfig.angel_endpoint;
-        let angel_redirect = appconfig.angel_redirect;
+        const angel_endpoint = appconfig.angel_endpoint;
+        const angel_redirect = appconfig.angel_redirect;
         const angel_redirect_url = angel_endpoint + "/#/login?service=" + angel_redirect;
       // If signout appended
       let queryParams = route.queryParams;
